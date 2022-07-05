@@ -1,0 +1,11 @@
+.tooltip {
+    background-color: rgb(213, 213, 213);
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 10px;
+
+    position: absolute;
+    top: 50%;
+    right: -70%;
+    transform: translateY(-50%);
+}

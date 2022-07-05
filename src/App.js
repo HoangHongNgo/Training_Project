@@ -1,58 +1,37 @@
 import logo from './logo.svg';
 import './App.css';
+
+import StudentTable from './components/StudentTable'
+import ToDoApp from './components/TodoApp/ToDoApp';
+import Message from './components/Message/Message';
 import { useState } from 'react';
-import Student from './components/Student';
 
 
 function App() {
-  const [studentList, setStudentList] = useState([
+  const [messageList, setMessageList] = useState([
     {
       id: 1,
-      firstName: 'Toan',
-      lastName: 'Dang',
-      isAssign: false
+      content: 'abc xyz def',
+      time: Date.now()
     },
     {
       id: 2,
-      firstName: 'Hoang',
-      lastName: 'Ngo',
-      isAssign: false
-    },
-    {
-      id: 3,
-      firstName: 'Thuc',
-      lastName: 'Trinh',
-      isAssign: true
+      content: 'abc xyz def 2',
+      time: Date.now()
     },
   ])
-  const [listChecking, setListChecking] = useState([])
 
-  const assignUser = () => {
-    const studentListClone = [...studentList]
-    listChecking.forEach((item, index) => {
-      const indexStudent = studentListClone.findIndex(student => student.id === item)
-      studentListClone[indexStudent].isAssign = true
-      setStudentList(studentListClone)
+  const renderMessage = () => {
+    return messageList.map((message, index) => {
+      return <div key={message.id}>
+        <Message {...message}  />
+      </div>
     })
   }
-
-  const renderStudent = () => {
-    return studentList.map((student, index) => {
-      return <Student {...student} key={student.id} setListChecking={setListChecking} listChecking={listChecking}  />
-    })
-  }
-
+  
   return (
     <div>
-        <button onClick={assignUser} style={{marginTop: 20, marginBottom: 20}}>Assign Student</button>
-        <table style={{width: '100%'}}>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Actions</th>
-          </tr>
-          {renderStudent()}
-        </table>
+      {renderMessage()}
     </div>
   );
 }

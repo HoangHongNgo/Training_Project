@@ -2,18 +2,13 @@ import React from 'react'
 import Tooltip from '../Tooltip/Tooltip'
 import style from './Message.module.css'
 
-export default function Message({id, content, time}) {
 
-    // const [isHover]
-
-    const handleHoverMesage = () => {
-
-    }
+export default function Message({id, content, time, showModal}) {
 
   return (
-    <div onMouseOver={() => {}} className={style['message']}>
+    <div className={style['message']} onClick={showModal}  >
         <p>{content}</p>
-        <Tooltip time={time} />
+        <div className={style['tooltip']} ><Tooltip  time={time}/></div>
     </div>
   )
 }
